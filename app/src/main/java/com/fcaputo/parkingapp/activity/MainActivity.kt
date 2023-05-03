@@ -1,7 +1,8 @@
-package com.fcaputo.parkingapp
+package com.fcaputo.parkingapp.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.fcaputo.parkingapp.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
