@@ -1,29 +1,28 @@
 package com.fcaputo.parkingapp.mvp.contract
 
+import com.fcaputo.parkingapp.entity.Reservation
+import java.time.LocalDateTime
+
 interface ParkingContract {
 
     interface Model {
-        fun storeReservation()
+        fun storeReservation(reservation: Reservation)
+        fun isParkingLotAvailable(parkingLot: Int, startDate: LocalDateTime, endDate: LocalDateTime): Boolean
     }
 
     interface Presenter {
         fun onSaveButtonPressed()
-        fun validateReservationDates() : Boolean
-        fun validateParkingLotAvailability() : Boolean
+        fun areReservationDatesValid(start: LocalDateTime, end: LocalDateTime): Boolean
     }
-
-    /*
-    - Fetch start & end date/time from UI
-    - Validate dates/times
-    - Fetch parking lot number & security code
-    - Validate availability for parking lot
-    - Build & store reservation
-    */
 
     interface View {
         fun onSaveButtonPressed(onClick: () -> Unit)
-        fun getReservationDatesRange()
-        fun getParkingLotNumber() : Int
-        fun getSecurityCode() : Int
+        fun getStartDateTime(): LocalDateTime
+        fun getEndDateTime(): LocalDateTime
+        fun showDateTimeError()
+        fun getParkingLotNumber(): Int
+        fun getSecurityCode(): Int
+        fun showAvailabilityError()
+        fun showSuccessMessage(reservationInfo: Reservation)
     }
 }
