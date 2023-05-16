@@ -8,11 +8,11 @@ interface ParkingContract {
     interface Model {
         fun storeReservation(reservation: Reservation)
         fun isParkingLotAvailable(parkingLot: Int, startDate: LocalDateTime, endDate: LocalDateTime): Boolean
+        fun areDateTimesValid(startDate: LocalDateTime, endDate: LocalDateTime): Boolean
     }
 
     interface Presenter {
         fun onSaveButtonPressed()
-        fun areReservationDatesValid(start: LocalDateTime, end: LocalDateTime): Boolean
     }
 
     interface View {

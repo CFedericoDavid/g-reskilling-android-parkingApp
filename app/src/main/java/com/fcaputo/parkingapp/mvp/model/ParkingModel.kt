@@ -13,4 +13,6 @@ class ParkingModel : ParkingContract.Model {
         TODO("Not yet implemented")
     }
 
+    override fun areDateTimesValid(startDate: LocalDateTime, endDate: LocalDateTime): Boolean = (startDate.isAfter(LocalDateTime.now()) && endDate.isAfter(LocalDateTime.now()))
+
 }

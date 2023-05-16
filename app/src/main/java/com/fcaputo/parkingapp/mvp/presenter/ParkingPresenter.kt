@@ -11,15 +11,15 @@ class ParkingPresenter(private val model: ParkingContract.Model, private val vie
     }
 
     override fun onSaveButtonPressed() {
-        val startDateTime = view.getStartDateTime()
-        val endDateTime = view.getEndDateTime()
-        if (!areReservationDatesValid(startDateTime, endDateTime)) {
+        val startDateTime: LocalDateTime = view.getStartDateTime()
+        val endDateTime: LocalDateTime = view.getEndDateTime()
+        if (!model.areDateTimesValid(startDateTime, endDateTime)) {
             view.showDateTimeError()
             return
         }
 
-        val parkingLot = view.getParkingLotNumber()
-        val securityCode = view.getSecurityCode()
+        val parkingLot: Int = view.getParkingLotNumber()
+        val securityCode: Int = view.getSecurityCode()
         if (!model.isParkingLotAvailable(parkingLot, startDateTime, endDateTime)){
             view.showAvailabilityError()
             return
@@ -27,11 +27,7 @@ class ParkingPresenter(private val model: ParkingContract.Model, private val vie
 
         val newReservation = Reservation(startDateTime, endDateTime, parkingLot, securityCode)
         model.storeReservation(newReservation)
-        view.showSuccessMessage()
-    }
-
-    override fun areReservationDatesValid(start: LocalDateTime, end: LocalDateTime): Boolean {
-        TODO("Not yet implemented")
+        view.showSuccessMessage(newReservation)
     }
 
 }
