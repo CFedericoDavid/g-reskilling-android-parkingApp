@@ -1,7 +1,7 @@
 package com.fcaputo.parkingapp.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.fcaputo.parkingapp.R
 import com.fcaputo.parkingapp.mvp.model.ParkingModel
 import com.fcaputo.parkingapp.mvp.presenter.ParkingPresenter

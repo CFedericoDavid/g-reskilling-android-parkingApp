@@ -1,5 +1,6 @@
 package com.fcaputo.parkingapp.mvp.contract
 
+import android.widget.EditText
 import com.fcaputo.parkingapp.entity.Reservation
 import java.time.LocalDateTime
 
@@ -24,5 +25,8 @@ interface ParkingContract {
         fun getSecurityCode(): Int
         fun showAvailabilityError()
         fun showSuccessMessage(reservationInfo: Reservation)
+        fun setDatePicker(textInput: EditText?, tag: String)
+        fun setTimePicker(textInput: EditText?, tag: String)
+        fun setDateTimePickers()
     }
 }

@@ -8,6 +8,7 @@ class ParkingPresenter(private val model: ParkingContract.Model, private val vie
 
     init {
         view.onSaveButtonPressed { onSaveButtonPressed() }
+        view.setDateTimePickers()
     }
 
     override fun onSaveButtonPressed() {
