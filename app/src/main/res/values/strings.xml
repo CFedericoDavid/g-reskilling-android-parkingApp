@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Parking App</string>
+
+    <!-- Common -->
+    <string name="numFields_maxLength">8</string>
+
+    <string name="success_dialog_button_text">OK</string>
+    <string name="error_dialog_button_text">GOT IT</string>
+    <string name="error_incomplete_field_title">Missing Fields</string>
+    <string name="error_incomplete_field_msg">There are some missing fields.</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_activity_title">Settings</string>
+    <string name="settings_parking_size">Parking Lot Size</string>
+    <string name="settings_current_size">Current size: %1$s</string>
+    <string name="save_button_text">SAVE</string>
+
+    <string name="settings_success_msg">Your settings were successfully saved.</string>
+
+    <string name="error_settings_sizeIsZero_title">Invalid Size</string>
+    <string name="error_settings_sizeIsZero_msg">Size must be greater than zero.</string>
 </resources>
