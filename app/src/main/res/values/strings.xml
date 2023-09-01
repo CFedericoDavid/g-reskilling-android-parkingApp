@@ -1,13 +1,18 @@
 <resources>
     <string name="app_name">Parking App</string>
-
     <!-- Common -->
     <string name="numFields_maxLength">8</string>
 
-    <string name="success_dialog_button_text">OK</string>
-    <string name="error_dialog_button_text">GOT IT</string>
+    <string name="success_dialog_ok_text">OK</string>
+    <string name="error_dialog_got_it_text">GOT IT</string>
+    <string name="error_others_title">Error</string>
     <string name="error_incomplete_field_title">Missing Fields</string>
     <string name="error_incomplete_field_msg">There are some missing fields.</string>
+
+    <!-- Home Screen -->
+    <string name="home_title">Parking Reservation App</string>
+    <string name="home_settings_button">SETTINGS</string>
+    <string name="home_reservations_button">MAKE A RESERVATION</string>
 
     <!-- Settings Screen -->
     <string name="settings_activity_title">Settings</string>
@@ -19,4 +24,31 @@
 
     <string name="error_settings_sizeIsZero_title">Invalid Size</string>
     <string name="error_settings_sizeIsZero_msg">Size must be greater than zero.</string>
+
+    <!-- Reservation Screen -->
+    <string name="reservation_activity_title">Parking Spot Reservation</string>
+    <string name="reservation_start_date">Start Date</string>
+    <string name="reservation_start_time">Start Time</string>
+    <string name="reservation_end_date">End Date</string>
+    <string name="reservation_end_time">End Time</string>
+    <string name="reservation_parking_lot_number">Parking Lot</string>
+    <string name="reservation_parking_lot_size_helper">Parking lot size: %1$s</string>
+    <string name="reservation_security_code">Security Code</string>
+    <string name="reservation_submit_res">Submit</string>
+
+    <string name="error_reservation_invalidDate_title">Invalid Dates</string>
+    <string name="error_reservation_unorderedDates_msg">End date must be greater than start date.</string>
+    <string name="error_reservation_pastDates_msg">Both start and end dates must be future.</string>
+    <string name="error_reservation_invalidSpot_title">Invalid Spot Number</string>
+    <string name="error_reservation_unavailableSpot_msg">The selected parking spot is not available in the selected date range. Please consider choosing another one.</string>
+    <string name="error_reservation_outOfRangeSpot_msg"> Parking number must be lesser than the parking lot size.</string>
+    <string name="error_reservation_spotNumberIsZero_msg">Parking number must be greater than zero.</string>
+    <string name="error_size_not_set_msg">Could not retrieve the parking lot size. Please be sure it is set and then retry.</string>
+
+    <string name="reservation_success_title">Reservation confirmed</string>
+    <string name="reservation_success_msg">Your reservation was successfully appointed.</string>
+    <string name="date_picker_tag">Date Picker</string>
+    <string name="time_picker_tag">Time Picker</string>
+
+    <string name="navigation_settings">SETTINGS</string>
 </resources>

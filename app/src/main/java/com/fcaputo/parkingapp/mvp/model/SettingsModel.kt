@@ -6,8 +6,6 @@ import com.fcaputo.parkingapp.utils.validation.ValidationErrorType
 import com.fcaputo.parkingapp.utils.validation.ValidationResult
 
 class SettingsModel : SettingsContract.Model {
-    private var parkingSize: Int = Constants.SIZE_NOT_SET_INT
-
     override fun validate(size: Int): ValidationResult {
         return if (size == 0) {
             ValidationResult(isSuccess = false, ValidationErrorType.SIZE_IS_ZERO)
@@ -16,7 +14,7 @@ class SettingsModel : SettingsContract.Model {
         }
     }
 
-    override fun save(newSize: Int) { parkingSize = newSize }
+    override fun save(newSize: Int) { ParkingSettings.size = newSize }
 
-    override fun getParkingSize(): Int = parkingSize
+    override fun getParkingSize(): Int = ParkingSettings.size
 }

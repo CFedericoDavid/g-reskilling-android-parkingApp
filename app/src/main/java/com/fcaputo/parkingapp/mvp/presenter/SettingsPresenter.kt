@@ -29,5 +29,5 @@ class SettingsPresenter(private val model: SettingsContract.Model, private val v
     }
 
     private fun formIsIncomplete(): Boolean = view.getTextFieldsContents().any{ it.isNullOrEmpty() }
-    private fun getSizeString(size: Int): String = if (size != Constants.SIZE_NOT_SET_INT) size.toString() else Constants.SIZE_NOT_SET_STRING
+    private fun getSizeString(size: Int): String = if (size != Constants.ZERO_INT) size.toString() else Constants.NOT_SET_STRING
 }

@@ -7,7 +7,6 @@ import com.fcaputo.parkingapp.R
 import com.fcaputo.parkingapp.databinding.ActivitySettingsBinding
 import com.fcaputo.parkingapp.mvp.contract.SettingsContract
 import com.fcaputo.parkingapp.mvp.view.base.ActivityView
-import com.fcaputo.parkingapp.utils.Constants
 import com.fcaputo.parkingapp.utils.validation.ValidationErrorType
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -30,7 +29,7 @@ class SettingsView(activity: Activity) : ActivityView(activity),SettingsContract
 
     override fun showParkingSize(size: String) {
         val sizeString = activity?.resources?.getString(R.string.settings_current_size, size)
-        binding.textCurrentSize.setText(sizeString, TextView.BufferType.NORMAL)
+        binding.textInputParkingSize.helperText = sizeString
     }
 
     override fun showErrorMessage(error: ValidationErrorType) {
@@ -39,7 +38,7 @@ class SettingsView(activity: Activity) : ActivityView(activity),SettingsContract
         MaterialAlertDialogBuilder(activity as AppCompatActivity)
             .setTitle(titleId)
             .setMessage(messageId)
-            .setPositiveButton(R.string.error_dialog_button_text, null)
+            .setPositiveButton(R.string.error_dialog_got_it_text, null)
             .show()
     }
 
@@ -51,13 +50,14 @@ class SettingsView(activity: Activity) : ActivityView(activity),SettingsContract
             ValidationErrorType.SIZE_IS_ZERO -> {
                 Pair(R.string.error_settings_sizeIsZero_title, R.string.error_settings_sizeIsZero_msg)
             }
+            else -> { Pair(Int.MIN_VALUE, Int.MIN_VALUE) }
         }
     }
 
     override fun showSuccessMessage() {
         MaterialAlertDialogBuilder(activity as AppCompatActivity)
             .setMessage(R.string.settings_success_msg)
-            .setPositiveButton(R.string.success_dialog_button_text, null)
+            .setPositiveButton(R.string.success_dialog_ok_text, null)
             .show()
     }
 }
