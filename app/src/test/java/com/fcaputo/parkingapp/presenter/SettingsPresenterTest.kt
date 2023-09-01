@@ -1,8 +1,9 @@
-package com.fcaputo.parkingapp.settingsTests
+package com.fcaputo.parkingapp.presenter
 
 import com.fcaputo.parkingapp.mvp.contract.SettingsContract
 import com.fcaputo.parkingapp.mvp.model.SettingsModel
 import com.fcaputo.parkingapp.mvp.presenter.SettingsPresenter
+import com.fcaputo.parkingapp.utils.Constants
 import com.fcaputo.parkingapp.utils.validation.ValidationErrorType
 import io.mockk.every
 import io.mockk.mockk
@@ -24,7 +25,7 @@ class SettingsPresenterTest {
 
     @Test
     fun `when save button is pressed, and no size is set, the presenter raises an error and the view shows it`(){
-        every { view.getTextFieldsContents() } returns listOf(EMPTY_SIZE_STRING)
+        every { view.getTextFieldsContents() } returns listOf(Constants.EMPTY_STRING)
         presenter.onSaveButton()
         verifyOrder {
             view.getTextFieldsContents()
@@ -35,7 +36,7 @@ class SettingsPresenterTest {
     @Test
     fun `when save button is pressed, and an invalid number is set, model raises an error and view shows it`(){
         every { view.getTextFieldsContents() } returns listOf(ZERO_STRING)
-        every { view.getParkingSize() } returns ZERO_INT
+        every { view.getParkingSize() } returns Constants.ZERO_INT
         presenter.onSaveButton()
         verifyOrder {
             view.getTextFieldsContents()
@@ -58,8 +59,6 @@ class SettingsPresenterTest {
     }
 
     companion object {
-        const val EMPTY_SIZE_STRING = ""
-        const val ZERO_INT = 0
         const val ZERO_STRING = "0"
         const val VALID_SIZE_INT = 100
         const val VALID_SIZE_STRING = "100"
