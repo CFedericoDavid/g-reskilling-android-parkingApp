@@ -1,16 +1,17 @@
 package com.fcaputo.parkingapp.mvp.view
 
 import android.app.Activity
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import com.fcaputo.parkingapp.R
-import com.fcaputo.parkingapp.activity.SettingsActivity
 import com.fcaputo.parkingapp.databinding.ActivityReservationBinding
 import com.fcaputo.parkingapp.mvp.contract.ReservationContract
 import com.fcaputo.parkingapp.mvp.view.base.ActivityView
 import com.fcaputo.parkingapp.utils.DateTimeCustomFormat
 import com.fcaputo.parkingapp.utils.DateTimePicker
-import com.fcaputo.parkingapp.utils.DateTimePicker.*
+import com.fcaputo.parkingapp.utils.DateTimePicker.DATE_PICKER_END
+import com.fcaputo.parkingapp.utils.DateTimePicker.DATE_PICKER_START
+import com.fcaputo.parkingapp.utils.DateTimePicker.TIME_PICKER_END
+import com.fcaputo.parkingapp.utils.DateTimePicker.TIME_PICKER_START
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -30,20 +31,6 @@ class ReservationView(activity: Activity) : ActivityView(activity), ReservationC
     override fun showParkingLotSize(size: String) {
         val sizeString = activity?.getString(R.string.reservation_parking_lot_size_helper, size)
         binding.tilParkingLot.helperText = sizeString
-    }
-
-    override fun onSettingsButton(onClick: () -> Unit) {
-        binding.btnSettings.setOnClickListener { onClick() }
-    }
-
-    override fun navigateToSettings() {
-        Intent(activity as AppCompatActivity, SettingsActivity::class.java).also {
-            activity?.startActivity(it)
-        }
-    }
-
-    override fun onParkingSpotInputFocus(onFocus: () -> Unit) {
-        binding.etParkingLot.setOnFocusChangeListener { _, _ -> onFocus() }
     }
 
     override fun onDateTimeInputPressed(onInputClick: (DateTimePicker) -> Unit) {

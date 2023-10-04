@@ -15,17 +15,12 @@ interface ReservationContract {
 
     interface Presenter {
         fun onDateTimeClick(picker: DateTimePicker)
-        fun onParkingSpotFocus()
         fun onSaveButton()
-        fun onSettingsButton()
     }
 
     interface View {
         fun showParkingLotSize(size: String)
-        fun onSettingsButton(onClick: () -> Unit)
-        fun navigateToSettings()
         fun onSaveButton(onClick: () -> Unit)
-        fun onParkingSpotInputFocus(onFocus: () -> Unit)
         fun onDateTimeInputPressed(onInputClick: (DateTimePicker) -> Unit)
         fun showDatePicker(selectedDate: Calendar, pickerType: DateTimePicker)
         fun showTimePicker(selectedTime: Calendar, pickerType: DateTimePicker)

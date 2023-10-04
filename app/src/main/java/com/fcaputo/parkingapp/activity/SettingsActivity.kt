@@ -1,5 +1,7 @@
 package com.fcaputo.parkingapp.activity
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.fcaputo.parkingapp.R
@@ -13,5 +15,11 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_settings)
 
         SettingsPresenter(SettingsModel(), SettingsView(this))
+    }
+
+    companion object {
+        fun getIntent(activity: Activity?): Intent {
+            return Intent(activity as AppCompatActivity, SettingsActivity::class.java)
+        }
     }
 }

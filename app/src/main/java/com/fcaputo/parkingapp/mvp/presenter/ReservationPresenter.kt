@@ -15,8 +15,6 @@ import java.util.Calendar
 class  ReservationPresenter(private val model: ReservationContract.Model, private val view: ReservationContract.View) : ReservationContract.Presenter {
     init {
         view.onSaveButton { onSaveButton() }
-        view.onSettingsButton { onSettingsButton() }
-        view.onParkingSpotInputFocus { onParkingSpotFocus() }
         view.onDateTimeInputPressed(this::onDateTimeClick)
         view.showParkingLotSize(getSizeString(model.getParkingLotSize()))
     }
@@ -34,10 +32,6 @@ class  ReservationPresenter(private val model: ReservationContract.Model, privat
                 view.showTimePicker(time.trimAtMinutes(), picker)
             }
         }
-    }
-
-    override fun onParkingSpotFocus() {
-        view.showParkingLotSize(getSizeString(model.getParkingLotSize()))
     }
 
     override fun onSaveButton() {
@@ -59,10 +53,6 @@ class  ReservationPresenter(private val model: ReservationContract.Model, privat
         } else {
             validationResult.error?.let { showError(it) }
         }
-    }
-
-    override fun onSettingsButton() {
-        view.navigateToSettings()
     }
 
     private fun isFormComplete(): Boolean = view.getEditTextsContents().all { it.hasData() }

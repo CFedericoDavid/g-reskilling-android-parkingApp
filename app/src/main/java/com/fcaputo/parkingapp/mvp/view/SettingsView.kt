@@ -23,7 +23,10 @@ class SettingsView(activity: Activity) : ActivityView(activity),SettingsContract
 
     override fun getTextFieldsContents(): List<CharSequence?> = listOf(binding.textInputParkingSize).map{ it.editText?.text }
 
-    override fun clear() { binding.textInputParkingSize.editText?.text?.clear() }
+    override fun clear() {
+        binding.textInputParkingSize.editText?.text?.clear()
+        binding.root.requestFocus()
+    }
 
     override fun getParkingSize(): Int = binding.textInputParkingSize.editText?.text.toString().toInt()
 
