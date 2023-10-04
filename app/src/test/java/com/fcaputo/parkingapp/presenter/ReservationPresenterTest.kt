@@ -1,14 +1,10 @@
 package com.fcaputo.parkingapp.presenter
 
-import android.text.Editable
-import android.widget.EditText
 import com.fcaputo.parkingapp.mvp.contract.ReservationContract
 import com.fcaputo.parkingapp.mvp.presenter.ReservationPresenter
 import com.fcaputo.parkingapp.utils.Constants.EMPTY_STRING
-import com.fcaputo.parkingapp.utils.Constants.ZERO_INT
 import com.fcaputo.parkingapp.utils.DateTimeCustomFormat
 import com.fcaputo.parkingapp.utils.DateTimePicker
-import com.fcaputo.parkingapp.utils.atTime
 import com.fcaputo.parkingapp.utils.getUtcCalendarInstance
 import com.fcaputo.parkingapp.utils.plusWeeks
 import com.fcaputo.parkingapp.utils.trimAtMinutes
@@ -18,7 +14,6 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import io.mockk.verifyOrder
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import java.util.Calendar
@@ -33,7 +28,6 @@ class ReservationPresenterTest {
         presenter = ReservationPresenter(model, view)
         verifyOrder {
             view.onSaveButton(any())
-            view.onSettingsButton(any())
             view.onDateTimeInputPressed(any())
             view.showParkingLotSize(any())
         }
