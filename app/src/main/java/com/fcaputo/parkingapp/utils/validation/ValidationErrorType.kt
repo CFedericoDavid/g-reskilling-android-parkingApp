@@ -8,5 +8,6 @@ enum class ValidationErrorType {
     SPOT_IS_OUT_OF_RANGE,
     SPOT_IS_ZERO,
     SPOT_IS_UNAVAILABLE,
-    SIZE_NOT_SET
+    SIZE_NOT_SET,
+    RESERVATION_NOT_FOUND
 }

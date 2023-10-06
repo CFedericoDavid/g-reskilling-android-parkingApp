@@ -4,15 +4,20 @@ import com.fcaputo.parkingapp.mvp.contract.HomeContract
 
 class HomePresenter(private val view: HomeContract.View) : HomeContract.Presenter {
     init {
-        view.onSettingsButton { onSettingsClick() }
-        view.onMakeReservationButton { onMakeReservationClick() }
+        view.onSettingsButton { onSettingsPressed() }
+        view.onMakeReservationButton { onMakeReservationPressed() }
+        view.onReleaseButton { onReleasePressed() }
     }
 
-    override fun onSettingsClick() {
+    override fun onSettingsPressed() {
         view.navigateToSettings()
     }
 
-    override fun onMakeReservationClick() {
+    override fun onMakeReservationPressed() {
         view.navigateToMakeReservation()
+    }
+
+    override fun onReleasePressed() {
+        view.navigateToReleaseSpot()
     }
 }

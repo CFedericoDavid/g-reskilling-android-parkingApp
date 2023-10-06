@@ -20,13 +20,13 @@ class HomePresenterTest {
 
     @Test
     fun `when Settings button is pressed, presenter redirects to Settings screen`(){
-        presenter.onSettingsClick()
+        presenter.onSettingsPressed()
         verify { view.navigateToSettings() }
     }
 
     @Test
     fun `when 'Make a Reservation' button is pressed, presenter redirects to Reservations screen`(){
-        presenter.onMakeReservationClick()
+        presenter.onMakeReservationPressed()
         verify { view.navigateToMakeReservation() }
     }
 
