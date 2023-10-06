@@ -102,7 +102,7 @@
         android:id="@+id/tilParkingLot"
         style="@style/TextInputLayoutTheme"
         android:layout_height="wrap_content"
-        android:hint="@string/reservation_parking_lot_number"
+        android:hint="@string/reservation_parking_spot_number"
         app:helperTextEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

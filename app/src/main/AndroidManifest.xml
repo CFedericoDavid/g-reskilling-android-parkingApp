@@ -23,6 +23,9 @@
             android:name=".activity.ReservationActivity"
             android:exported="true" />
         <activity
+            android:name=".activity.ReleaseActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.SettingsActivity"
             android:exported="true" />
     </application>

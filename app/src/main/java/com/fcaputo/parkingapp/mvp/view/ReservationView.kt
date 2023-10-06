@@ -116,15 +116,15 @@ class ReservationView(activity: Activity) : ActivityView(activity), ReservationC
     }
 
     override fun showOutOfRangeSpotError() {
-        showErrorMessage(R.string.error_reservation_invalidSpot_title, R.string.error_reservation_outOfRangeSpot_msg)
+        showErrorMessage(R.string.error_invalidSpot_title, R.string.error_reservation_outOfRangeSpot_msg)
     }
 
     override fun showZeroSpotError() {
-        showErrorMessage(R.string.error_reservation_invalidSpot_title, R.string.error_reservation_spotNumberIsZero_msg)
+        showErrorMessage(R.string.error_invalidSpot_title, R.string.error_spotNumberIsZero_msg)
     }
 
     override fun showUnavailableSpotError() {
-        showErrorMessage(R.string.error_reservation_invalidSpot_title, R.string.error_reservation_unavailableSpot_msg)
+        showErrorMessage(R.string.error_invalidSpot_title, R.string.error_reservation_unavailableSpot_msg)
     }
 
     override fun showSizeNotSetError() {

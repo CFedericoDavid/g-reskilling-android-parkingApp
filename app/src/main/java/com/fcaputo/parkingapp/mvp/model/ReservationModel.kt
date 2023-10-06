@@ -8,15 +8,13 @@ import com.fcaputo.parkingapp.utils.validation.ValidationResult
 import java.util.Calendar
 
 class ReservationModel : ReservationContract.Model {
-    private val reservations: MutableList<Reservation> = mutableListOf()
-
     override fun getParkingLotSize() = ParkingSettings.size
 
     override fun storeReservation(reservation: Reservation) {
-        reservations.add(reservation)
+        ParkingData.reservations.add(reservation)
     }
 
-    override fun getReservations(): List<Reservation> = reservations.toList()
+    override fun getReservations(): List<Reservation> = ParkingData.reservations.toList()
 
     override fun validateData(startDate: Calendar, endDate: Calendar, parkingSpot: Int): ValidationResult {
         val today = Calendar.getInstance()
@@ -38,7 +36,7 @@ class ReservationModel : ReservationContract.Model {
         }
     }
 
-    private fun getReservationsByParkingSpot(spotNumber: Int) = reservations.filter{ it.parkingLot == spotNumber }.toList()
+    private fun getReservationsByParkingSpot(spotNumber: Int) = getReservations().filter{ it.parkingLot == spotNumber }.toList()
 
     private fun isSpotAvailable(startDate: Calendar, endDate: Calendar, spotReservations: List<Reservation>): Boolean {
         return spotReservations.all { !datesOverlap(startDate, endDate, it) }

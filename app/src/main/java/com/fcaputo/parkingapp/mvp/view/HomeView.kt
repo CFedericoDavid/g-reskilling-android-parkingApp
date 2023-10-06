@@ -1,6 +1,7 @@
 package com.fcaputo.parkingapp.mvp.view
 
 import android.app.Activity
+import com.fcaputo.parkingapp.activity.ReleaseActivity
 import com.fcaputo.parkingapp.activity.ReservationActivity
 import com.fcaputo.parkingapp.activity.SettingsActivity
 import com.fcaputo.parkingapp.databinding.ActivityHomeBinding
@@ -14,12 +15,16 @@ class HomeView(activity: Activity) : ActivityView(activity), HomeContract.View {
         activity.setContentView(binding.root)
     }
 
-    override fun onSettingsButton(onClick: () -> Unit) {
-        binding.btnSettings.setOnClickListener { onClick() }
+    override fun onSettingsButton(onPressed: () -> Unit) {
+        binding.btnSettings.setOnClickListener { onPressed() }
     }
 
-    override fun onMakeReservationButton(onClick: () -> Unit) {
-        binding.btnReservation.setOnClickListener { onClick() }
+    override fun onMakeReservationButton(onPressed: () -> Unit) {
+        binding.btnReservation.setOnClickListener { onPressed() }
+    }
+
+    override fun onReleaseButton(onPressed: () -> Unit) {
+        binding.btnRelease.setOnClickListener { onPressed() }
     }
 
     override fun navigateToSettings() {
@@ -28,5 +33,9 @@ class HomeView(activity: Activity) : ActivityView(activity), HomeContract.View {
 
     override fun navigateToMakeReservation() {
         activity?.startActivity(ReservationActivity.getIntent(activity))
+    }
+
+    override fun navigateToReleaseSpot() {
+        activity?.startActivity(ReleaseActivity.getIntent(activity))
     }
 }
