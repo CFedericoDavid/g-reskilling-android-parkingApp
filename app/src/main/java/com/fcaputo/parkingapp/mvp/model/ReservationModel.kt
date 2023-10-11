@@ -3,6 +3,7 @@ package com.fcaputo.parkingapp.mvp.model
 import com.fcaputo.parkingapp.entity.Reservation
 import com.fcaputo.parkingapp.mvp.contract.ReservationContract
 import com.fcaputo.parkingapp.utils.Constants.ZERO_INT
+import com.fcaputo.parkingapp.utils.getUtcCalendarInstance
 import com.fcaputo.parkingapp.utils.validation.ValidationErrorType
 import com.fcaputo.parkingapp.utils.validation.ValidationResult
 import java.util.Calendar
@@ -48,5 +49,9 @@ class ReservationModel : ReservationContract.Model {
         // and when the candidate end date is before the reservation (therefore the start date will also precede it)
         // and negate the union to get the whole range of unsafe cases
         return ! (startDate.after(reservation.endDate) || endDate.before(reservation.startDate))
+    }
+
+    override fun releasePastReservations() {
+        ParkingData.reservations.removeIf { it.endDate.before(getUtcCalendarInstance()) }
     }
 }

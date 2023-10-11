@@ -11,6 +11,7 @@ interface ReservationContract {
         fun storeReservation(reservation: Reservation)
         fun getReservations(): List<Reservation>
         fun validateData(startDate: Calendar, endDate: Calendar, parkingSpot: Int): ValidationResult
+        fun releasePastReservations()
     }
 
     interface Presenter {

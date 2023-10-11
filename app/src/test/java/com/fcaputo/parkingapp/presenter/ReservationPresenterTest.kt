@@ -27,6 +27,7 @@ class ReservationPresenterTest {
     fun setup() {
         presenter = ReservationPresenter(model, view)
         verifyOrder {
+            model.releasePastReservations()
             view.onSaveButton(any())
             view.onDateTimeInputPressed(any())
             view.showParkingLotSize(any())

@@ -5,15 +5,25 @@ import com.fcaputo.parkingapp.mvp.contract.ReservationContract
 import com.fcaputo.parkingapp.utils.Constants
 import com.fcaputo.parkingapp.utils.DateTimeCustomFormat
 import com.fcaputo.parkingapp.utils.DateTimePicker
-import com.fcaputo.parkingapp.utils.DateTimePicker.*
+import com.fcaputo.parkingapp.utils.DateTimePicker.DATE_PICKER_END
+import com.fcaputo.parkingapp.utils.DateTimePicker.DATE_PICKER_START
+import com.fcaputo.parkingapp.utils.DateTimePicker.TIME_PICKER_END
+import com.fcaputo.parkingapp.utils.DateTimePicker.TIME_PICKER_START
 import com.fcaputo.parkingapp.utils.hasData
 import com.fcaputo.parkingapp.utils.trimAtMinutes
 import com.fcaputo.parkingapp.utils.validation.ValidationErrorType
-import com.fcaputo.parkingapp.utils.validation.ValidationErrorType.*
+import com.fcaputo.parkingapp.utils.validation.ValidationErrorType.DATETIMES_ARE_PAST
+import com.fcaputo.parkingapp.utils.validation.ValidationErrorType.DATETIMES_ARE_UNORDERED
+import com.fcaputo.parkingapp.utils.validation.ValidationErrorType.INCOMPLETE_FIELD
+import com.fcaputo.parkingapp.utils.validation.ValidationErrorType.SIZE_NOT_SET
+import com.fcaputo.parkingapp.utils.validation.ValidationErrorType.SPOT_IS_OUT_OF_RANGE
+import com.fcaputo.parkingapp.utils.validation.ValidationErrorType.SPOT_IS_UNAVAILABLE
+import com.fcaputo.parkingapp.utils.validation.ValidationErrorType.SPOT_IS_ZERO
 import java.util.Calendar
 
 class  ReservationPresenter(private val model: ReservationContract.Model, private val view: ReservationContract.View) : ReservationContract.Presenter {
     init {
+        model.releasePastReservations()
         view.onSaveButton { onSaveButton() }
         view.onDateTimeInputPressed(this::onDateTimeClick)
         view.showParkingLotSize(getSizeString(model.getParkingLotSize()))
