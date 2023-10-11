@@ -2,6 +2,7 @@ package com.fcaputo.parkingapp.model
 
 import com.fcaputo.parkingapp.entity.Reservation
 import com.fcaputo.parkingapp.mvp.contract.ReservationContract
+import com.fcaputo.parkingapp.mvp.model.ParkingData
 import com.fcaputo.parkingapp.mvp.model.ParkingSettings
 import com.fcaputo.parkingapp.mvp.model.ReservationModel
 import com.fcaputo.parkingapp.utils.Constants.ZERO_INT
@@ -18,12 +19,12 @@ import org.junit.Test
 import java.util.Calendar
 
 class ReservationModelTest {
-    private lateinit var model: ReservationContract.Model
+    private val model: ReservationContract.Model = ReservationModel()
 
     @Before
     fun setup() {
         ParkingSettings.size = PARKING_SIZE
-        model = ReservationModel()
+        ParkingData.reservations.clear()
     }
 
     @Test
@@ -246,6 +247,39 @@ class ReservationModelTest {
         Assert.assertEquals(ValidationResult(isSuccess = true), result)
     }
 
+    @Test
+    fun `automatic release system successfully releases all past reservations`() {
+        model.storeReservation(
+            Reservation(
+                startDate = firstPastStartDate,
+                endDate = firstPastEndDate,
+                parkingLot = VALID_SPOT,
+                securityCode = SECURITY_CODE
+            )
+        )
+        model.storeReservation(
+            Reservation(
+                startDate = secondPastStartDate,
+                endDate = secondPastEndDate,
+                parkingLot = VALID_SPOT,
+                securityCode = SECURITY_CODE
+            )
+        )
+        model.storeReservation(
+            Reservation(
+                startDate = futureEarlierDate,
+                endDate = futureLaterDate,
+                parkingLot = VALID_SPOT,
+                securityCode = SECURITY_CODE
+            )
+        )
+
+        Assert.assertEquals(THREE, model.getReservations().size)
+        model.releasePastReservations()
+        Assert.assertEquals(ONE, model.getReservations().size)
+        Assert.assertFalse(model.getReservations().any { it.endDate.before(getUtcCalendarInstance()) })
+    }
+
     companion object {
         const val PARKING_SIZE = 100
         const val VALID_SPOT = 10
@@ -253,6 +287,8 @@ class ReservationModelTest {
         const val SECURITY_CODE = 1234
 
         const val ONE = 1
+        const val TWO = 2
+        const val THREE = 3
         const val DIFF_IN_HOURS = ONE
         const val DIFF_IN_MINUTES = 15
 
@@ -260,5 +296,15 @@ class ReservationModelTest {
         val pastDate: Calendar = getUtcCalendarInstance().minusHours(ONE)
         val futureEarlierDate: Calendar = getUtcCalendarInstance().plusHours(ONE)
         val futureLaterDate: Calendar = futureEarlierDate.plusHours(ONE)
+
+        //RELEASE SYSTEM DATES
+        val firstPastStartDate: Calendar = getUtcCalendarInstance()
+            .minusHours(ONE)
+            .minusMinutes(DIFF_IN_MINUTES)
+        val firstPastEndDate: Calendar = getUtcCalendarInstance().minusHours(ONE)
+        val secondPastStartDate: Calendar = getUtcCalendarInstance()
+            .minusHours(TWO)
+            .minusMinutes(DIFF_IN_MINUTES)
+        val secondPastEndDate: Calendar = getUtcCalendarInstance().minusHours(TWO)
     }
 }
